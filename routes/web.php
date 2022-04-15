@@ -19,12 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* show folders and tasks */
 Route::get('/folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
 Route::get('/folders/{id}/tasks/test', function () {
     return "hello world";
 })->name('test.index');
 
+/* create a new folder */
 Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
 
 Route::post('/folders/create', [FolderController::class,'create']);
+
+/* create a new task */
+Route::get('/folders/{id}/tasks/create', [TaskController::class,'showCreateForm'])->name('tasks.create');
+
+Route::post('/folders/{id}/tasks/create', [TaskController::class,'create']);
